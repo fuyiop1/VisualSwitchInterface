@@ -51,7 +51,7 @@
     </div>
 
     @Scripts.Render("~/bundles/jquery")
-    @*@Scripts.Render("~/bundles/jqueryval")*@
+    @Scripts.Render("~/bundles/jqueryval")
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/VisualSwitchInterface")
     @RenderSection("scripts", required:=False)
