@@ -1,4 +1,6 @@
 ﻿Namespace Controllers
+
+    <Authorize()>
     Public Class HomeController
         Inherits Controller
 

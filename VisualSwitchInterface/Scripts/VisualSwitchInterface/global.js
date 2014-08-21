@@ -100,20 +100,20 @@
 
         $(".ajax-operation").off("click").on("click", function (e) {
             e.preventDefault();
-            var that = $(this);
-            var options = that.data("options") || {};
-            var href = that.attr("href");
-            var target;
+            var $this = $(this);
+            var options = $this.data("options") || {};
+            var href = $this.attr("href");
+            var $target;
 
             if (options.target) {
-                target = $(options.target);
+                $target = $(options.target);
             } else {
-                target = $('#dataContainer');
+                $target = $('#operationContainer');
             }
 
             var operation = function () {
                 $.post(href, { _: new Date().getTime() }, function (response) {
-                    target.html(response);
+                    $target.html(response);
                     global.init();
                 });
             };

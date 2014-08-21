@@ -1,16 +1,36 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
+    @Code
+        Dim title As String = ViewData("Title")
+        If String.IsNullOrEmpty(title) Then
+            title = "Visual Switch Interface"
+        End If
+    End Code
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
-    <title>@ViewData("Title")</title>
-    @Styles.Render("~/Content/css")
+    <title>@title</title>
     @Styles.Render("~/Content/bootstrap")
+    @Styles.Render("~/Content/css")
 
     @Scripts.Render("~/bundles/modernizr")
+    @RenderSection("styles", required:=False)
 </head>
 <body>
-    @RenderBody()
+    <header>
+        <div class="container">
+            <div class="row">
+                <div id="headerLeft" class="col-md-6">
+                </div>
+                <div id="headerRight" class="col-md-6">
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        @RenderBody()
+    </div>
 
     <div class="modal fade" id="defaultModal" tabindex="-1" role="dialog" aria-labelledby="defaultModalLabel" aria-hidden="true">
         <div class="modal-dialog">
