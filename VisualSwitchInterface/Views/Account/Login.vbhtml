@@ -1,7 +1,10 @@
 ﻿@ModelType VisualSwitchInterface.Models.AccountLoginModel
 <div class="row">
     <div class="col-lg-4 col-md-6 col-sm-12 col-md-offset-3 col-lg-offset-4">
-        <div id="loginWell" class="well well-lg">
+        <div id="loginWell" class="well">
+            <div class="bottom-buffer-sm">
+                <strong>Please Login To Control TV Signage</strong>
+            </div>
             @Html.ValidationSummary(True)
             <form action="@Request.Url" method="post">
                 <div class="form-group">

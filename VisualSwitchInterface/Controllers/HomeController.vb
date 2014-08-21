@@ -8,5 +8,9 @@
             Return View()
         End Function
 
+        Function _MapClicked() As ActionResult
+            Return PartialView()
+        End Function
+
     End Class
 End Namespace

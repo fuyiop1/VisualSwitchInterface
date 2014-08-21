@@ -1,8 +1,4 @@
-﻿body {
-    background-color: #3d7abb;
-}
-
-header, footer, nav, section {
+﻿header, footer, nav, section {
     display: block;
 }
 
@@ -35,11 +31,25 @@ textarea {
     color: #f00;
 }
 
+.validation-summary-errors ul {
+    padding-left: 15px;
+}
+
 .validation-summary-valid {
     display: none;
 }
 
+.bottom-buffer {
+    margin-bottom: 20px;
+}
 
+.bottom-buffer-sm {
+    margin-bottom: 10px;
+}
+
+.bottom-buffer-xs {
+    margin-bottom: 5px;
+}
 
 header {
     background-color: #1a1a1a;
@@ -59,4 +69,13 @@ header {
 
 #loginWell {
     margin-top: 25%;
+}
+
+.map-img {
+    width: 100%;
+}
+
+.ajax-open-modal,
+.ajax-operation {
+    font-family: inherit;
 }
