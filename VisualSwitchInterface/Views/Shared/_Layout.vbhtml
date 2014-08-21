@@ -20,9 +20,9 @@
     <header>
         <div class="container">
             <div class="row">
-                <div id="headerLeft" class="col-md-6">
+                <div id="headerLeft" class="col-xs-12 col-md-6">
                 </div>
-                <div id="headerRight" class="col-md-6">
+                <div id="headerRight" class="col-md-6 hidden-xs">
                 </div>
             </div>
         </div>

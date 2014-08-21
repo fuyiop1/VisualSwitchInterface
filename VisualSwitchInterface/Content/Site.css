@@ -46,7 +46,7 @@ header {
 }
 
 #headerLeft, #headerRight {
-    height: 110px;
+    height: 77px;
 }
 
 #headerLeft {
@@ -58,5 +58,5 @@ header {
 }
 
 #loginWell {
-    margin-top: 30%;
+    margin-top: 25%;
 }
