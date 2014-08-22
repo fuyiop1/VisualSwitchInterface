@@ -26,39 +26,37 @@
                 <div id="headerLeft" class="col-xs-8 col-sm-4">
                 </div>
                 <div id="headerMiddle" class="hidden-xs col-sm-4">
-                    <div><span class="text-lg">&nbsp;&nbsp;&nbsp;&nbsp;Switching App</span></div>
+                    <div class="bottom-buffer-xs"><span class="text-lg">&nbsp;&nbsp;&nbsp;&nbsp;Switching App</span></div>
                     <div><span>Powered By:</span></div>
                 </div>
                 <div id="headerRight" class="col-xs-4 col-sm-4">
                     @If isAuthenticated Then
-                        @<div class="row">
-                            <nav class="navbar navbar-default" role="navigation">
-                                <div class="container-fluid">
-                                    <div class="navbar-header">
-                                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-1">
-                                            <span class="sr-only">Toggle navigation</span>
-                                            <span class="icon-bar"></span>
-                                            <span class="icon-bar"></span>
-                                            <span class="icon-bar"></span>
-                                        </button>
-                                        @*<a class="navbar-brand" href="#"></a>*@
-                                    </div>
-
-                                    <div class="collapse navbar-collapse" id="navbar-collapse-1">
-                                        <ul class="nav navbar-nav navbar-right">
-                                            <li><a href="#"><span class="glyphicon glyphicon-cog"></span> Settings</a></li>
-                                            <li class="dropdown">
-                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> admin <span class="caret"></span></a>
-                                                <ul class="dropdown-menu" role="menu">
-                                                    <li><a href="#">Change password</a></li>
-                                                    <li><a href="@Url.Action("Logout", "Account")">Logout</a></li>
-                                                </ul>
-                                            </li>
-                                        </ul>
-                                    </div>
+                        @<nav class="navbar navbar-default" role="navigation">
+                            <div class="clearfix">
+                                <div class="navbar-header">
+                                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-1">
+                                        <span class="sr-only">Toggle navigation</span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                    </button>
+                                    @*<a class="navbar-brand" href="#"></a>*@
                                 </div>
-                            </nav>
-                        </div>
+
+                                <div class="collapse navbar-collapse" id="navbar-collapse-1">
+                                    <ul class="nav navbar-nav navbar-right">
+                                        <li><a href="#"><span class="glyphicon glyphicon-cog"></span> Settings</a></li>
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> admin <span class="caret"></span></a>
+                                            <ul class="dropdown-menu" role="menu">
+                                                <li><a href="#">Change password</a></li>
+                                                <li><a href="@Url.Action("Logout", "Account")">Logout</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </nav>
                     End If
                 </div>
             </div>
@@ -68,6 +66,19 @@
     <div class="container">
         @RenderBody()
     </div>
+
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="pull-left">
+                    <span>Copyright 2014 CastNET | A Division of Alpha Video, Inc.</span>
+                </div>
+                <div class="pull-right">
+                    <span>Version 1.0.20150101</span>
+                </div>
+            </div>
+        </div>
+    </footer>
 
     <div class="modal fade" id="defaultModal" tabindex="-1" role="dialog" aria-labelledby="defaultModalLabel" aria-hidden="true">
         <div class="modal-dialog">

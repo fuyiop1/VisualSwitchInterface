@@ -212,6 +212,17 @@
         }
     };
 
+    global.resizeViewer = function ($viewer) {
+        if (!$viewer)
+            $viewer = $("#viewer");
+
+        var spaceHeight = $(window).innerHeight() - $(document.body).outerHeight();
+        var expectedHeight = parseInt($viewer.css("height"));
+        expectedHeight += spaceHeight;
+
+        $viewer.css("height", expectedHeight + "px");
+    };
+
     global.init();
 
 }(window.global = window.global || {}, jQuery);
