@@ -1,5 +1,7 @@
 ﻿+function (global, $) {
 
+    global.timerId = null;
+
     global.init = function () {
 
         $(".ajax-open-modal").off("click").on("click", function (e) {

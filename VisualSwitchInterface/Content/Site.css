@@ -52,23 +52,27 @@ textarea {
 }
 
 header {
-    background-color: #1a1a1a;
+    background-color: #000;
 }
 
-#headerLeft, #headerRight {
-    height: 77px;
+#headerLeft, #headerMiddle {
+    color: #fff;
 }
 
 #headerLeft {
-    background: url("Images/VisualSwitchInterface/header-left.png") left center no-repeat;
+    height: 80px;
+    background: url("Images/VisualSwitchInterface/logo-horse-hoe.png") left center no-repeat;
 }
 
-#headerRight {
-    background: url("Images/VisualSwitchInterface/header-right.png") right center no-repeat;
+#headerMiddle {
+    height: 73px;
+    padding-top: 7px;
+    background: url("Images/VisualSwitchInterface/logo-cast-net.png") 100px 40px no-repeat;
 }
 
-#loginWell {
-    margin-top: 25%;
+.login-bg {
+    background: url("Images/VisualSwitchInterface/login-bg.png") center center no-repeat;
+    background-size: cover;
 }
 
 .map-img {
@@ -78,4 +82,13 @@ header {
 .ajax-open-modal,
 .ajax-operation {
     font-family: inherit;
+}
+
+.text-lg {
+    font-size: 16px;
+    line-height: 36px;
+}
+
+.well.vertical-center {
+    margin-bottom: 0;
 }

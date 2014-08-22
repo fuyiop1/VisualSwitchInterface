@@ -187,9 +187,10 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Images\VisualSwitchInterface\login-bg.png" />
+    <Content Include="Content\Images\VisualSwitchInterface\logo-cast-net.png" />
     <Content Include="Content\Images\VisualSwitchInterface\sample-floor.png" />
-    <Content Include="Content\Images\VisualSwitchInterface\header-left.png" />
-    <Content Include="Content\Images\VisualSwitchInterface\header-right.png" />
+    <Content Include="Content\Images\VisualSwitchInterface\logo-horse-hoe.png" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />

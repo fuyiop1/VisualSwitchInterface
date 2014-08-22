@@ -14,15 +14,18 @@
     @Styles.Render("~/Content/css")
 
     @Scripts.Render("~/bundles/modernizr")
-    @RenderSection("styles", required:=False)
 </head>
 <body>
-    <header>
+    <header class="bottom-buffer-sm">
         <div class="container">
             <div class="row">
-                <div id="headerLeft" class="col-xs-12 col-md-6">
+                <div id="headerLeft" class="col-xs-8 col-sm-4">
                 </div>
-                <div id="headerRight" class="col-md-6 hidden-xs">
+                <div id="headerMiddle" class="hidden-xs col-sm-4">
+                    <div><span class="text-lg">&nbsp;&nbsp;&nbsp;&nbsp;Switching App</span></div>
+                    <div><span>Powered By:</span></div>
+                </div>
+                <div id="headerRight" class="hidden-xs col-xs-4 col-sm-4">
                 </div>
             </div>
         </div>
@@ -71,7 +74,6 @@
     </div>
 
     @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/jqueryval")
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/VisualSwitchInterface")
     @RenderSection("scripts", required:=False)
