@@ -14,7 +14,7 @@ textarea {
 /* Styles for validation helpers
 -----------------------------------------------------------*/
 .field-validation-error {
-    color: #f00;
+    color: #843534;
 }
 
 .field-validation-valid {
@@ -22,13 +22,13 @@ textarea {
 }
 
 .input-validation-error {
-    border: 1px solid #f00;
+    border: 1px solid #843534;
     background-color: #fee;
 }
 
 .validation-summary-errors {
     font-weight: bold;
-    color: #f00;
+    color: #843534;
 }
 
 .validation-summary-errors ul {

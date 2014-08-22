@@ -2,9 +2,9 @@
 <div class="login-bg">
     <div class="row">
         <div class="col-lg-4 col-md-6 col-sm-12 col-md-offset-3 col-lg-offset-4">
-            <div id="loginWell" class="well vertical-center">
+            <div id="loginWell" class="well vertical-center well-lg">
                 <div class="bottom-buffer-sm">
-                    <strong>Please Login To Control TV Signage</strong>
+                    <strong class="text-lg">Please Login To Control TV Signage</strong>
                 </div>
                 @Html.ValidationSummary(True)
                 <form action="@Request.Url" method="post">
@@ -18,6 +18,11 @@
                         @Html.PasswordFor(Function(x) x.Password, New With {.class = "form-control", .autocomplete = "off"})
                         @Html.ValidationMessageFor(Function(x) x.Password)
                     </div>
+                    @If Model.IsLocked Then
+                        @<div class="form-group">
+                            <span class="text-warning">Please contact 000.000.000 for help.</span>
+                        </div>
+                    End If
                     <div class="clearfix">
                         <button type="submit" class="btn btn-primary pull-right">Login</button>
                     </div>

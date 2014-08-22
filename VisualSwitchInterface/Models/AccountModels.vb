@@ -8,5 +8,7 @@ Namespace Models
         <Required()>
         Property Password() As String
 
+        Property IsLocked() As Boolean
+
     End Class
 End Namespace
