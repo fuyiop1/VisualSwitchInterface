@@ -3,6 +3,10 @@
 <head>
     @Code
         Dim title As String = ViewData("Title")
+        Dim controller = Url.RequestContext.RouteData.Values("controller").ToString().ToLower()
+        Dim action = Url.RequestContext.RouteData.Values("action").ToString().ToLower()
+        Dim isAuthenticated = Request.IsAuthenticated And Not (controller = "account" And action = "login")
+
         If String.IsNullOrEmpty(title) Then
             title = "Visual Switch Interface"
         End If
@@ -25,7 +29,37 @@
                     <div><span class="text-lg">&nbsp;&nbsp;&nbsp;&nbsp;Switching App</span></div>
                     <div><span>Powered By:</span></div>
                 </div>
-                <div id="headerRight" class="hidden-xs col-xs-4 col-sm-4">
+                <div id="headerRight" class="col-xs-4 col-sm-4">
+                    @If isAuthenticated Then
+                        @<div class="row">
+                            <nav class="navbar navbar-default" role="navigation">
+                                <div class="container-fluid">
+                                    <div class="navbar-header">
+                                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-1">
+                                            <span class="sr-only">Toggle navigation</span>
+                                            <span class="icon-bar"></span>
+                                            <span class="icon-bar"></span>
+                                            <span class="icon-bar"></span>
+                                        </button>
+                                        @*<a class="navbar-brand" href="#"></a>*@
+                                    </div>
+
+                                    <div class="collapse navbar-collapse" id="navbar-collapse-1">
+                                        <ul class="nav navbar-nav navbar-right">
+                                            <li><a href="#">Settings</a></li>
+                                            <li class="dropdown">
+                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">admin <span class="caret"></span></a>
+                                                <ul class="dropdown-menu" role="menu">
+                                                    <li><a href="#">Change password</a></li>
+                                                    <li><a href="@Url.Action("Logout", "Account")">Logout</a></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </nav>
+                        </div>
+                    End If
                 </div>
             </div>
         </div>

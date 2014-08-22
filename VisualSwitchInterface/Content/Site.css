@@ -31,9 +31,9 @@ textarea {
     color: #843534;
 }
 
-.validation-summary-errors ul {
-    padding-left: 15px;
-}
+    .validation-summary-errors ul {
+        padding-left: 15px;
+    }
 
 .validation-summary-valid {
     display: none;
@@ -69,6 +69,33 @@ header {
     padding-top: 7px;
     background: url("Images/VisualSwitchInterface/logo-cast-net.png") 100px 40px no-repeat;
 }
+
+#headerRight {
+    height: 66px;
+    padding: 14px 0;
+}
+
+    #headerRight .navbar {
+        margin-bottom: 0;
+        background-color: #000;
+        border-color: #000;
+    }
+
+        #headerRight .navbar .container-fluid {
+            background-color: #000;
+            color: #fff;
+        }
+
+    #headerRight .navbar-default .navbar-nav > li > a {
+        color: #fff;
+    }
+
+    #headerRight .navbar-default .navbar-nav > .open > a:hover,
+    #headerRight .navbar-default .navbar-nav > .open > a:focus,
+    #headerRight .navbar-default .navbar-nav > .open > a:visited,
+    #headerRight .navbar-default .navbar-nav > .open > a:active {
+        background-color: #000;
+    }
 
 .login-bg {
     background: url("Images/VisualSwitchInterface/login-bg.png") center center no-repeat;

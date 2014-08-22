@@ -28,6 +28,11 @@ Namespace Controllers
             Return View(model)
         End Function
 
+        Function Logout() As ActionResult
+            FormsAuthentication.SignOut()
+            Return RedirectToAction("Login")
+        End Function
+
         Private Function ValidateLogin(ByVal model As AccountLoginModel) As Boolean
             Dim result = ModelState.IsValid
 
