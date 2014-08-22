@@ -20,7 +20,7 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-    <header class="bottom-buffer-sm">
+    <header>
         <div class="container">
             <div class="row">
                 <div id="headerLeft" class="col-xs-8 col-sm-4">
@@ -46,9 +46,9 @@
 
                                     <div class="collapse navbar-collapse" id="navbar-collapse-1">
                                         <ul class="nav navbar-nav navbar-right">
-                                            <li><a href="#">Settings</a></li>
+                                            <li><a href="#"><span class="glyphicon glyphicon-cog"></span> Settings</a></li>
                                             <li class="dropdown">
-                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">admin <span class="caret"></span></a>
+                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> admin <span class="caret"></span></a>
                                                 <ul class="dropdown-menu" role="menu">
                                                     <li><a href="#">Change password</a></li>
                                                     <li><a href="@Url.Action("Logout", "Account")">Logout</a></li>

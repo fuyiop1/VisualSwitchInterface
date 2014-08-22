@@ -119,3 +119,10 @@ header {
 .well.vertical-center {
     margin-bottom: 0;
 }
+
+.nav-pills-container {
+    padding-top: 5px;
+    height: 45px;
+    border-bottom: 4px solid #428bca;
+    overflow: hidden;
+}
