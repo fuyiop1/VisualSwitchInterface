@@ -24,7 +24,10 @@
             var $viewer = $("#viewer");
             var $panzoomParent = $viewer.find(".panzoom-parent");
 
-            $panzoomParent.width(global.findContainer($viewer, ".container").width() - 45);
+            //var imageWidth = parseInt("@Model.Width");
+            var panzoomParentWidth = global.findContainer($viewer, ".container").width() - 45;
+
+            $panzoomParent.width(panzoomParentWidth);
             $panzoomParent.height($viewer.height());
 
             var $panzoom = $panzoomParent.find(".panzoom");
@@ -32,8 +35,8 @@
                 $zoomIn: $viewer.find(".zoom-in"),
                 $zoomOut: $viewer.find(".zoom-out"),
                 $reset: $viewer.find(".zoom-reset"),
-                //contain: "invert",
-                startTransform: 'scale(1.0)',
+                //contain: true,
+                startTransform: "scale(1.0)",
                 increment: 0.1,
                 minScale: 1,
             });
