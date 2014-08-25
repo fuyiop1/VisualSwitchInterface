@@ -28,8 +28,10 @@ End Code
     </div>
 </div>
 
-<div id="viewer" class="text-center">
-    <img class="map-img" src="~/Content/Images/VisualSwitchInterface/sample-floor.png" alt="" />
+<div class="clearfix">
+    <div id="viewer" class="relative pull-left center-block">
+        @Html.Action("_FloorChanged")
+    </div>
 </div>
 
 @Section scripts

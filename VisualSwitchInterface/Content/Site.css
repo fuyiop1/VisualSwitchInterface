@@ -143,3 +143,15 @@ footer {
     display: inline-block;
     padding: 7px 0;
 }
+
+.relative {
+    position: relative;
+}
+
+.absolute {
+    position: absolute;
+}
+
+.text-super-danger {
+    color: #ff0000;
+}
