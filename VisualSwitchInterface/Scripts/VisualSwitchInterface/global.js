@@ -144,6 +144,24 @@
 
     };
 
+    global.findContainer = function ($sender, selector) {
+        var result = null;
+        if ($sender) {
+            if (selector) {
+                var child = $sender;
+                for (var i = 0; i < 20; i++) {
+                    var temp = child.parent(selector);;
+                    if (temp.size() > 0) {
+                        result = temp;
+                        break;
+                    } else {
+                        child = child.parent();
+                    }
+                }
+            }
+        }
+        return result;
+    };
 
     global.showNotificationModal = function (options) {
         if (!options) {

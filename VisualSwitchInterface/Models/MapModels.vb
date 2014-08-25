@@ -6,6 +6,14 @@
 
         Property FilePath() As String
         Property SwitchModels() As IList(Of SwitchModel)
+        Property Width() As Integer
+        Property Height() As Integer
+
+        Sub ReadImage(file As String)
+            Dim image = Drawing.Image.FromFile(file)
+            Width = image.Width
+            Height = image.Height
+        End Sub
     End Class
 
     Public Class SwitchModel

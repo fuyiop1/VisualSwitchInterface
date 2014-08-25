@@ -114,11 +114,6 @@ footer {
     background-size: cover;
 }
 
-.map-img {
-    height: 100%;
-    max-width: 100%;
-}
-
 .ajax-open-modal,
 .ajax-operation {
     font-family: inherit;

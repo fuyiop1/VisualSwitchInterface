@@ -191,6 +191,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Images\VisualSwitchInterface\login-bg.png" />
     <Content Include="Content\Images\VisualSwitchInterface\logo-cast-net.png" />
+    <Content Include="Content\Images\VisualSwitchInterface\sample-floor.jpg" />
     <Content Include="Content\Images\VisualSwitchInterface\sample-floor.png" />
     <Content Include="Content\Images\VisualSwitchInterface\logo-horse-hoe.png" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -209,6 +210,8 @@
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
     <Content Include="packages.config" />
+    <Content Include="Scripts\jquery.mousewheel.js" />
+    <Content Include="Scripts\jquery.panzoom.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />

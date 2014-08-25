@@ -25,22 +25,21 @@
 </div>
 
 <div class="clearfix">
-    <div id="viewer" class="relative pull-left center-block">
+    <div id="viewer">
         @Html.Action("_FloorChanged")
     </div>
 </div>
 
 @Section scripts
+    @Scripts.Render("~/bundles/jqueryPanzoom")
     <script>
-        $(function () {
-            global.resizeViewer();
+        global.resizeViewer();
 
-            $(window).off("resize").resize(function () {
-                clearTimeout(global.timerId);
-                global.timerId = setTimeout(function () {
-                    global.resizeViewer();
-                }, 200);
-            });
+        $(window).off("resize").resize(function () {
+            clearTimeout(global.timerId);
+            global.timerId = setTimeout(function () {
+                global.resizeViewer();
+            }, 200);
         });
     </script>
 End Section

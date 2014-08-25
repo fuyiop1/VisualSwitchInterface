@@ -10,6 +10,10 @@ Public Class BundleConfig
                     "~/Scripts/jquery.unobtrusive*",
                     "~/Scripts/jquery.validate*"))
 
+        bundles.Add(New ScriptBundle("~/bundles/jqueryPanzoom").Include(
+                    "~/Scripts/jquery.panzoom.js",
+                    "~/Scripts/jquery.mousewheel.js"))
+
         ' Use the development version of Modernizr to develop with and learn from. Then, when you're
         ' ready for production, use the build tool at http://modernizr.com to pick only the tests you need.
         bundles.Add(New ScriptBundle("~/bundles/modernizr").Include(
