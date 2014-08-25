@@ -1,8 +1,4 @@
-﻿@Code
-    ViewData("Title") = "Index"
-End Code
-
-@Html.Partial("_TopNav")
+﻿@Html.Partial("_TopNav")
 
 <div class="clearfix bottom-buffer-sm">
     <div class="pull-left">

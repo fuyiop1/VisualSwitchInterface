@@ -154,6 +154,7 @@
     <Compile Include="App_Start\WebApiConfig.vb" />
     <Compile Include="Controllers\AccountController.vb" />
     <Compile Include="Controllers\HomeController.vb" />
+    <Compile Include="Controllers\MapController.vb" />
     <Compile Include="Global.asax.vb">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -213,11 +214,11 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\VisualSwitchInterface\global.js" />
-    <Content Include="Views\Home\Index.vbhtml" />
+    <Content Include="Views\Map\Index.vbhtml" />
     <Content Include="Views\Account\Login.vbhtml" />
-    <Content Include="Views\Home\_TopNav.vbhtml" />
-    <Content Include="Views\Home\_SwitchClicked.vbhtml" />
-    <Content Include="Views\Home\_FloorChanged.vbhtml" />
+    <Content Include="Views\Map\_TopNav.vbhtml" />
+    <Content Include="Views\Map\_SwitchClicked.vbhtml" />
+    <Content Include="Views\Map\_FloorChanged.vbhtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
