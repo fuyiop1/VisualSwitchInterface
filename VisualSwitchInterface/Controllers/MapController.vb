@@ -19,7 +19,7 @@ Namespace Controllers
 
         Function _FloorChanged() As ActionResult
             Dim model = New MapModel
-            model.FilePath = "/Content/Images/VisualSwitchInterface/sample-floor.jpg"
+            model.FilePath = "/Content/Images/VisualSwitchInterface/sample-floor.png"
             model.SwitchModels = TempSwitchModels
             model.ReadImage(Server.MapPath(model.FilePath))
             Return PartialView(model)

@@ -1,6 +1,13 @@
 ﻿@ModelType VisualSwitchInterface.Models.MapModel
 <div class="clearfix">
     <div class="pull-left">
+        <div class="btn-group-vertical">
+            <button type="button" class="btn btn-default zoom-in" title="Zoom in"><span class="glyphicon glyphicon-plus"></span></button>
+            <button type="button" class="btn btn-default zoom-out" title="Zoom out"><span class="glyphicon glyphicon-minus"></span></button>
+            <button type="button" class="btn btn-default zoom-reset" title="Reset"><span class="glyphicon glyphicon-repeat"></span></button>
+        </div>
+    </div>
+    <div class="pull-right">
         <div class="panzoom-parent">
             <div class="panzoom relative">
                 <img src="@Model.FilePath" alt="" />
@@ -12,30 +19,13 @@
             </div>
         </div>
     </div>
-    <div class="pull-left">
-        <div class="btn-group-vertical">
-            <button type="button" class="btn btn-default zoom-in" title="Zoom in"><span class="glyphicon glyphicon-plus"></span></button>
-            <button type="button" class="btn btn-default zoom-out" title="Zoom out"><span class="glyphicon glyphicon-minus"></span></button>
-            <button type="button" class="btn btn-default zoom-reset" title="Reset"><span class="glyphicon glyphicon-repeat"></span></button>
-        </div>
-    </div>
     <script>
         setTimeout(function () {
             var $viewer = $("#viewer");
             var $panzoomParent = $viewer.find(".panzoom-parent");
-            var imageWidth = parseInt("@Model.Width");
-            var imageHeight = parseInt("@Model.Height");
-            var maxWidth = global.findContainer($viewer, ".container").width() - 40;
 
-            var panzoomParentWidth;
-            if (imageWidth > maxWidth) {
-                panzoomParentWidth = maxWidth;
-            } else {
-                panzoomParentWidth = imageWidth;
-            }
-
-            $panzoomParent.css("max-width", maxWidth + "px");
-            $panzoomParent.css("height", $viewer.height() + "px");
+            $panzoomParent.width(global.findContainer($viewer, ".container").width() - 45);
+            $panzoomParent.height($viewer.height());
 
             var $panzoom = $panzoomParent.find(".panzoom");
             $panzoom.panzoom({
@@ -46,7 +36,7 @@
                 startTransform: 'scale(1.0)',
                 increment: 0.1,
                 minScale: 1,
-            }).panzoom("zoomIn");
+            });
 
         }, 0);
     </script>
