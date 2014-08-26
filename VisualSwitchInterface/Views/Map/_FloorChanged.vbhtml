@@ -53,6 +53,6 @@
                 $addSwitchBtn.trigger("click");
             });
 
-        }, 5);
+        }, 10);
     </script>
 </div>
