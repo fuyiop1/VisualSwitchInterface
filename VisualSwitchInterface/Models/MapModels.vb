@@ -1,4 +1,6 @@
-﻿Namespace Models
+﻿Imports System.ComponentModel.DataAnnotations
+
+Namespace Models
     Public Class MapModel
         Public Sub New()
             SwitchModels = New List(Of SwitchModel)
@@ -18,8 +20,10 @@
 
     Public Class SwitchModel
         Property Id() As Integer
+
+        <Required()>
         Property Name() As String
-        Property CoordX() As Double
-        Property CoordY() As Double
+        Property CoordX() As Integer
+        Property CoordY() As Integer
     End Class
 End Namespace

@@ -103,7 +103,7 @@
         $(".ajax-operation").off("click").on("click", function (e) {
             e.preventDefault();
             var $this = $(this);
-            var options = $this.data("options") || {};
+            var options = $this.data("ajax-operation-options") || $this.data("options") || {};
             var href = $this.attr("href");
             var $target;
 
@@ -139,6 +139,67 @@
                 });
             } else {
                 operation();
+            }
+        });
+
+        $(".ajax-form").off("submit").on("submit", function (e) {
+            e.preventDefault();
+            var $this = $(this);
+            var options = $this.data("ajax-form-options") || $this.data("options") || {};
+            var $target = options.target ? $(options.target) : $("#defaultModal .modal-body");
+
+            var data = $this.serializeArray();
+            data.push({
+                name: "_",
+                value: new Date().getTime()
+            });
+
+            $.post($this.attr("action"), data, function (result) {
+                if (!options.isReserveContainer) {
+                    $target.empty();
+                }
+                if (options.isPrepend) {
+                    $target.prepend(result);
+                } else {
+                    $target.append(result);
+                }
+
+                global.init();
+
+                if ($target.find(".field-validation-error").size() == 0) {
+                    var updateSections = $target.find(".update-section");
+                    updateSections.each(function () {
+                        var $updateSection = $(this);
+                        var updateSectionOptions = $updateSection.data("update-section-options") || $updateSection.data("options") || {};
+                        var $updateSectionTarget;
+                        if (updateSectionOptions.target) {
+                            $updateSectionTarget = $(updateSectionOptions.target);
+                        }
+                        if ($updateSectionTarget) {
+                            $updateSectionTarget.empty();
+                            $updateSectionTarget.append($updateSection.children());
+                            if (!updateSectionOptions.notTriggerEvent) {
+                                $updateSectionTarget.find(".cascade-trigger, select").trigger("change");
+                            }
+                        }
+                    });
+                    if (options.isClearInputText) {
+                        $this.find(":text, textarea").val("");
+                    }
+                    $this.find("button[data-dismiss='modal']").first().trigger("click");
+                    $target.siblings(".modal-header").find("button[data-dismiss='modal']").first().trigger("click");
+                }
+            }, "html");
+
+        });
+
+        $(".modal-form-submit").off("click").on("click", function () {
+            var $this = $(this);
+            var $modal = global.findContainer($this, ".modal");
+            var $form = $modal.find("form").last();
+            $form.submit();
+            if (!$form.hasClass("ajax-form")) {
+                $modal.modal("hide");
             }
         });
 

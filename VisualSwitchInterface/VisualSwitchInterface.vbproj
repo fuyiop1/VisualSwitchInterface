@@ -222,6 +222,8 @@
     <Content Include="Views\Map\_TopNav.vbhtml" />
     <Content Include="Views\Map\_SwitchClicked.vbhtml" />
     <Content Include="Views\Map\_FloorChanged.vbhtml" />
+    <Content Include="Views\Map\_AddSwitch.vbhtml" />
+    <Content Include="Views\Map\EditorTemplates\SwitchModel.vbhtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />

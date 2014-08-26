@@ -115,7 +115,8 @@ footer {
 }
 
 .ajax-open-modal,
-.ajax-operation {
+.ajax-operation,
+.ajax-form {
     font-family: inherit;
 }
 
