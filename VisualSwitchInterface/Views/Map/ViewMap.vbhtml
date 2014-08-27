@@ -69,7 +69,7 @@ End Code
                 </div>
             </div>
         </div>
-        <a id="addSwitchBtn" href="#" data-href="@Url.Action("_AddSwitch", New With {.id = Model.Id})" class="hide ajax-open-modal" data-title="Add Switch"></a>
+        <a id="addSwitchBtn" href="#" data-href="@Url.Action("_AddSwitch", New With {.mapId = Model.Id})" class="hide ajax-open-modal" data-title="Add Switch"></a>
     </div>
 </div>
 
@@ -107,7 +107,7 @@ End Code
                 var coordX = parseInt((e.clientX - offset.left) / scale);
                 var coordY = parseInt((e.clientY - offset.top) / scale);
                 var $addSwitchBtn = $("#addSwitchBtn");
-                $addSwitchBtn.attr("href", $addSwitchBtn.data("href") + "?coordX=" + coordX + "&coordY=" + coordY);
+                $addSwitchBtn.attr("href", $addSwitchBtn.data("href") + "&coordX=" + coordX + "&coordY=" + coordY);
                 $addSwitchBtn.trigger("click");
             });
 

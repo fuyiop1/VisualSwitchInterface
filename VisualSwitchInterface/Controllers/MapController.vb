@@ -53,8 +53,8 @@ Namespace Controllers
             Return PartialView(model)
         End Function
 
-        Function _AddSwitch(id As Integer, coordX As Integer, coordY As Integer) As ActionResult
-            Dim model = New SwitchModel With {.MapId = id, .CoordX = coordX, .CoordY = coordY}
+        Function _AddSwitch(mapId As Integer, coordX As Integer, coordY As Integer) As ActionResult
+            Dim model = New SwitchModel With {.MapId = mapId, .CoordX = coordX, .CoordY = coordY}
             Return PartialView(model)
         End Function
 
