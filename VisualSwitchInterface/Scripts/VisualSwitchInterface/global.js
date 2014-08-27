@@ -295,13 +295,24 @@
         if (!$viewer)
             $viewer = $("#viewer");
 
+        if ($viewer.size() == 0)
+            return;
+
         var spaceHeight = $(window).innerHeight() - $(document.body).outerHeight();
         var expectedHeight = parseInt($viewer.css("height"));
         expectedHeight += spaceHeight;
 
         $viewer.css("height", expectedHeight + "px");
+
+        $(window).off("resize").resize(function () {
+            clearTimeout(global.timerId);
+            global.timerId = setTimeout(function () {
+                global.resizeViewer();
+            }, 200);
+        });
     };
 
     global.init();
+    global.resizeViewer();
 
 }(window.global = window.global || {}, jQuery);

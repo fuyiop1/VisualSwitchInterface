@@ -2,6 +2,7 @@
 
 <form class="ajax-form" action="@Request.Url">
     @Html.HiddenFor(Function(x) x.Id)
+    @Html.HiddenFor(Function(x) x.MapId)
     @Html.HiddenFor(Function(x) x.CoordX)
     @Html.HiddenFor(Function(x) x.CoordY)
     <div class="form-group">

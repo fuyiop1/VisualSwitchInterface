@@ -221,7 +221,7 @@
     <Content Include="Views\Account\Login.vbhtml" />
     <Content Include="Views\Map\_TopNav.vbhtml" />
     <Content Include="Views\Map\_SwitchClicked.vbhtml" />
-    <Content Include="Views\Map\_FloorChanged.vbhtml" />
+    <Content Include="Views\Map\ViewMap.vbhtml" />
     <Content Include="Views\Map\_AddSwitch.vbhtml" />
     <Content Include="Views\Map\EditorTemplates\SwitchModel.vbhtml" />
   </ItemGroup>

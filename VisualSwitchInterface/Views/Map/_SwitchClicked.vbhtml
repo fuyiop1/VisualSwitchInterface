@@ -1,3 +1,3 @@
 ﻿@ModelType VisualSwitchInterface.Models.SwitchModel
 
-<h2>@Model.Name <br /><br /><br /><br /><br /></h2>
+<h2>Coordinates (@(Model.CoordX), @(Model.CoordY)) <br /><br /><br /><br /><br /></h2>

@@ -5,7 +5,8 @@ Namespace Models
         Public Sub New()
             SwitchModels = New List(Of SwitchModel)
         End Sub
-
+        Property Id() As Integer
+        Property Name() As String
         Property FilePath() As String
         Property SwitchModels() As IList(Of SwitchModel)
         Property Width() As Integer
@@ -20,6 +21,7 @@ Namespace Models
 
     Public Class SwitchModel
         Property Id() As Integer
+        Property MapId() As Integer
 
         <Required()>
         Property Name() As String
