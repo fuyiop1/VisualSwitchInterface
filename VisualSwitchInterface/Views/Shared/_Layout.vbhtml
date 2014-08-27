@@ -18,6 +18,8 @@
     @Styles.Render("~/Content/css")
 
     @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
 </head>
 <body>
     <header>
@@ -117,9 +119,6 @@
             </div>
         </div>
     </div>
-
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/VisualSwitchInterface")
     @RenderSection("scripts", required:=False)
 </body>
