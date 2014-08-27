@@ -27,6 +27,7 @@ Namespace Controllers
             End If
 
             model.ReadImage(Server.MapPath(model.FilePath))
+            ViewBag.otherMaps = GetAllMaps().Where(Function(x) x.Id <> model.Id).ToList()
             Return View(model)
         End Function
 

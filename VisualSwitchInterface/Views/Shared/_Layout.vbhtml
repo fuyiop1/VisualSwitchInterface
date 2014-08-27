@@ -63,6 +63,10 @@
         </div>
     </header>
 
+    @If isAuthenticated Then
+        @Html.Partial("_TopNav")
+    End If
+
     <div class="container">
         @RenderBody()
     </div>

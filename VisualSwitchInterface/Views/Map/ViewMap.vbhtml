@@ -1,5 +1,13 @@
 ﻿@ModelType VisualSwitchInterface.Models.MapModel
-@Html.Partial("_TopNav")
+
+@Code
+    Dim otherMaps As IList(Of VisualSwitchInterface.Models.MapModel) = ViewBag.otherMaps
+End Code
+
+<ol class="breadcrumb row bottom-buffer-sm">
+    <li><a href="@Url.Action("Index")">Home</a></li>
+    <li class="active">Floor View - @Model.Name</li>
+</ol>
 
 <div class="clearfix bottom-buffer-sm">
     <div class="pull-left">
@@ -12,11 +20,15 @@
     </div>
     <div class="pull-right">
         <div class="dropdown">
-            <a href="#" class="btn dropdown-toggle" data-toggle="dropdown">Select Floor <span class="caret"></span></a>
-            <ul class="dropdown-menu" role="menu">
-                <li role="presentation"><a href="#" role="menuitem" tabindex="-1">First Floor</a></li>
-                <li role="presentation"><a href="#" role="menuitem" tabindex="-1">Second Floor</a></li>
-                <li role="presentation"><a href="#" role="menuitem" tabindex="-1">Third Floor</a></li>
+            <a href="#" class="btn dropdown-toggle" data-toggle="dropdown">@Model.Name <span class="caret"></span></a>
+            <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                @If otherMaps.Count > 0 Then
+                    For Each otherMap In otherMaps
+                    @<li role="presentation"><a href="@Url.Action("ViewMap", New With {.id = otherMap.Id})" role="menuitem" tabindex="-1">@otherMap.Name</a></li>
+                    Next
+                Else
+                    @<li role="presentation"><a class="text-curor" href="#" role="menuitem" tabindex="-1"><span class="text-warning">No other floors</span></a></li>
+                End If
             </ul>
         </div>
     </div>
@@ -27,7 +39,7 @@
 
 <div id="viewer">
     <div class="text-center">
-        <span class="text-danger">Click the map to add switch</span>
+        <span class="text-danger">Click the empty area of the map to add a new switch or click the polygon to control the switch.</span>
     </div>
     <div class="clearfix">
         <div class="pull-left">

@@ -219,7 +219,7 @@
     <Content Include="Scripts\VisualSwitchInterface\global.js" />
     <Content Include="Views\Map\Index.vbhtml" />
     <Content Include="Views\Account\Login.vbhtml" />
-    <Content Include="Views\Map\_TopNav.vbhtml" />
+    <Content Include="Views\Shared\_TopNav.vbhtml" />
     <Content Include="Views\Map\_SwitchClicked.vbhtml" />
     <Content Include="Views\Map\ViewMap.vbhtml" />
     <Content Include="Views\Map\_AddSwitch.vbhtml" />
