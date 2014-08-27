@@ -5,7 +5,8 @@
 End Code
 
 <ol class="breadcrumb row bottom-buffer-sm">
-    <li><a href="@Url.Action("Index")">Home</a></li>
+    <li><a href="@Url.Action("Index", "Home")">Home</a></li>
+    <li><a href="@Url.Action("Index")">Map View</a></li>
     <li class="active">Floor View - @Model.Name</li>
 </ol>
 

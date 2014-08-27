@@ -9,7 +9,7 @@ Namespace Controllers
         Inherits Controller
 
         Function Index() As ActionResult
-            Return View()
+            Return View(GetAllMaps())
         End Function
 
         Function ViewMap(id As Integer) As ActionResult
@@ -80,15 +80,15 @@ Namespace Controllers
             Return directoryPath
         End Function
 
-        Private Function GetUserDataFile() As String
-            Return Path.Combine(GetUserDataDirectory(), "UserData.json")
+        Private Function GetMapFile() As String
+            Return Path.Combine(GetUserDataDirectory(), "Map.json")
         End Function
 
         Private Function GetAllMaps() As IList(Of MapModel)
-            If Not IO.File.Exists(GetUserDataFile()) Then
+            If Not IO.File.Exists(GetMapFile()) Then
                 Return New List(Of MapModel)()
             End If
-            Return JsonConvert.DeserializeObject(Of IList(Of MapModel))(IO.File.ReadAllText(GetUserDataFile()))
+            Return JsonConvert.DeserializeObject(Of IList(Of MapModel))(IO.File.ReadAllText(GetMapFile()))
         End Function
 
         Private Function GetMap(id As Integer) As MapModel
@@ -105,7 +105,7 @@ Namespace Controllers
             End If
 
             maps.Add(model)
-            IO.File.WriteAllText(GetUserDataFile(), JsonConvert.SerializeObject(maps))
+            IO.File.WriteAllText(GetMapFile(), JsonConvert.SerializeObject(maps))
         End Sub
 
         Sub SaveSwitch(model As SwitchModel)
@@ -120,7 +120,7 @@ Namespace Controllers
             End If
 
             map.SwitchModels.Add(model)
-            IO.File.WriteAllText(GetUserDataFile(), JsonConvert.SerializeObject(maps))
+            IO.File.WriteAllText(GetMapFile(), JsonConvert.SerializeObject(maps))
         End Sub
 
         Private Function GetSwitch(id As Integer) As SwitchModel

@@ -1,10 +1,11 @@
 ﻿Namespace Controllers
 
     <Authorize()>
-    Public Class HomeController
+    Public Class LiveEventController
         Inherits Controller
+
         Function Index() As ActionResult
-            Return RedirectToAction("Index", "Map")
+            Return View()
         End Function
 
     End Class

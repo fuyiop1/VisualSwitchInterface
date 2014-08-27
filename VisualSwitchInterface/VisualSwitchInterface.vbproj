@@ -154,6 +154,9 @@
     <Compile Include="App_Start\WebApiConfig.vb" />
     <Compile Include="Controllers\AccountController.vb" />
     <Compile Include="Controllers\HomeController.vb" />
+    <Compile Include="Controllers\ListController.vb" />
+    <Compile Include="Controllers\EnvironmentController.vb" />
+    <Compile Include="Controllers\LiveEventController.vb" />
     <Compile Include="Controllers\MapController.vb" />
     <Compile Include="Global.asax.vb">
       <DependentUpon>Global.asax</DependentUpon>
@@ -224,6 +227,9 @@
     <Content Include="Views\Map\ViewMap.vbhtml" />
     <Content Include="Views\Map\_AddSwitch.vbhtml" />
     <Content Include="Views\Map\EditorTemplates\SwitchModel.vbhtml" />
+    <Content Include="Views\LiveEvent\Index.vbhtml" />
+    <Content Include="Views\Environment\Index.vbhtml" />
+    <Content Include="Views\List\Index.vbhtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />

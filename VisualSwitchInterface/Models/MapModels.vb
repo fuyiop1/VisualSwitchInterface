@@ -1,4 +1,5 @@
 ﻿Imports System.ComponentModel.DataAnnotations
+Imports Newtonsoft.Json
 
 Namespace Models
     Public Class MapModel
@@ -9,7 +10,11 @@ Namespace Models
         Property Name() As String
         Property FilePath() As String
         Property SwitchModels() As IList(Of SwitchModel)
+
+        <JsonIgnore()>
         Property Width() As Integer
+
+        <JsonIgnore()>
         Property Height() As Integer
 
         Sub ReadImage(file As String)
