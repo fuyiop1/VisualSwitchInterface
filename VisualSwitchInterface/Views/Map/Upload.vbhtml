@@ -7,7 +7,7 @@
 </ol>
 
 <div id="viewer">
-    <form action="@Url.Action("Upload")" method="post" class="form-horizontal file-upload-form" enctype="multipart/form-data">
+    <form action="@Request.Url" method="post" class="form-horizontal file-upload-form" enctype="multipart/form-data">
         <div class="form-group">
             <label class="col-sm-2 col-xs-12 control-label">Document:</label>
             <div class="col-sm-5 col-xs-12">
