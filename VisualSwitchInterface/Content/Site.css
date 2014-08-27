@@ -148,7 +148,12 @@ footer {
     position: absolute;
 }
 
+.map-anchor {
+    position: absolute;
+    margin-left: -8px;
+    margin-top: -8px;
+}
+
 .text-super-danger {
     color: #ff0000;
 }
-

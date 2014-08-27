@@ -24,7 +24,7 @@
             <div class="panzoom relative">
                 <img src="@Model.FilePath" alt="" />
                 @For Each switchModel In Model.SwitchModels
-                    @<a class="absolute ajax-open-modal" href="@Url.Action("_SwitchClicked", New With {.id = switchModel.Id})" style="left: @(switchModel.CoordX)px; top: @(switchModel.CoordY)px" title="@switchModel.Name" data-title="@switchModel.Name"><span class="glyphicon glyphicon-certificate text-super-danger text-lg"></span></a>
+                    @<a class="map-anchor ajax-open-modal" href="@Url.Action("_SwitchClicked", New With {.id = switchModel.Id})" style="left: @(switchModel.CoordX)px; top: @(switchModel.CoordY)px" title="@switchModel.Name" data-title="@switchModel.Name"><span class="glyphicon glyphicon-certificate text-super-danger text-lg"></span></a>
                 Next
             </div>
         </div>
