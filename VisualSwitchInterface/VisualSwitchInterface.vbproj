@@ -219,6 +219,7 @@
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\VisualSwitchInterface\fileUpload.js" />
     <Content Include="Scripts\VisualSwitchInterface\global.js" />
     <Content Include="Views\Map\Index.vbhtml" />
     <Content Include="Views\Account\Login.vbhtml" />
@@ -230,6 +231,8 @@
     <Content Include="Views\LiveEvent\Index.vbhtml" />
     <Content Include="Views\Environment\Index.vbhtml" />
     <Content Include="Views\List\Index.vbhtml" />
+    <Content Include="Views\Map\Upload.vbhtml" />
+    <Content Include="Views\Shared\_FileInput.vbhtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />

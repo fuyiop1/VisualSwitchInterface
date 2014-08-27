@@ -7,12 +7,12 @@
 
 <div id="viewer">
     <div class="bottom-buffer-sm">
-        <a href="@Url.Action("Upload")">Click to upload a map</a>
+        <a href="@Url.Action("Upload")"><span class="glyphicon glyphicon-plus"></span> Click to upload a map</a>
     </div>
 
     @If Model.Count > 0 Then
         @<div>
-            <div>
+            <div class="bottom-buffer-sm">
                 <strong>Available maps:</strong>
             </div>
             @For Each item In Model

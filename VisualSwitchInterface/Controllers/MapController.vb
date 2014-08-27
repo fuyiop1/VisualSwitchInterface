@@ -12,6 +12,23 @@ Namespace Controllers
             Return View(GetAllMaps())
         End Function
 
+        Function Upload() As ActionResult
+            Return View()
+        End Function
+
+        <HttpPost()>
+        Function Upload(inputFile As HttpPostedFileBase, model As MapModel) As ActionResult
+            Encapsulate(inputFile, model)
+            Dim savePath = Server.MapPath(model.FilePath)
+            Dim fileInfo = New FileInfo(savePath)
+            If Not fileInfo.Directory.Exists Then
+                fileInfo.Directory.Create()
+            End If
+            inputFile.SaveAs(savePath)
+            SaveMap(model)
+            Return RedirectToAction("Index")
+        End Function
+
         Function ViewMap(id As Integer) As ActionResult
             Dim model = GetMap(id)
 
@@ -71,6 +88,33 @@ Namespace Controllers
 
             Return isValid
         End Function
+
+        Private Sub Encapsulate(inputFile As HttpPostedFileBase, model As MapModel)
+            If model Is Nothing Then
+                model = New MapModel()
+            End If
+
+            Dim name = inputFile.FileName
+            Dim pathSeperators = New Char() {"/", "\\"}
+            Dim seperatorIndex = name.LastIndexOfAny(pathSeperators)
+            If seperatorIndex <> -1 Then
+                name = name.Substring(seperatorIndex + 1)
+            End If
+
+            Dim extension = "png"
+            Dim extensionIndex = name.LastIndexOf("."c)
+            If extensionIndex > -1 Then
+                extension = name.Substring(extensionIndex + 1)
+                name = name.Substring(0, extensionIndex)
+            End If
+
+            Dim fileName = String.Format("{0}.{1}", Guid.NewGuid(), extension)
+
+            model.FilePath = "/_UserData/Map/" + fileName
+            If String.IsNullOrEmpty(model.Name) Then
+                model.Name = name
+            End If
+        End Sub
 
         Private Function GetUserDataDirectory() As String
             Dim directoryPath = Server.MapPath("~/_UserData")

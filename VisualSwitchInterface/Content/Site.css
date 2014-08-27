@@ -161,3 +161,28 @@ footer {
 .text-curor {
     cursor: text;
 }
+
+.update-section {
+    display: none;
+}
+
+.input-file-wrapper {
+    overflow: hidden;
+    position: relative;
+}
+
+    .input-file-wrapper input[type='file'] {
+        cursor: pointer;
+        display: block;
+        font-size: 50px;
+        opacity: 0;
+        position: absolute;
+        width: 95px;
+        z-index: 1000;
+    }
+
+.chosen-file-text {
+    left: 100px;
+    position: absolute;
+    top: 5px;
+}

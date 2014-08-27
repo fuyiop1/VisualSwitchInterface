@@ -23,7 +23,8 @@ Public Class BundleConfig
                     "~/Scripts/bootstrap.js"))
 
         bundles.Add(New ScriptBundle("~/bundles/VisualSwitchInterface").Include(
-                    "~/Scripts/VisualSwitchInterface/global.js"))
+                    "~/Scripts/VisualSwitchInterface/global.js",
+                    "~/Scripts/VisualSwitchInterface/fileUpload.js"))
 
         bundles.Add(New StyleBundle("~/Content/css").Include("~/Content/site.css"))
 
