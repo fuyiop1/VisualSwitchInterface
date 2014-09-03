@@ -197,6 +197,8 @@
     <Content Include="Content\Images\VisualSwitchInterface\sample-floor.jpg" />
     <Content Include="Content\Images\VisualSwitchInterface\sample-floor.png" />
     <Content Include="Content\Images\VisualSwitchInterface\logo-horse-hoe.png" />
+    <Content Include="Content\Jcrop.gif" />
+    <Content Include="Content\jquery.Jcrop.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
@@ -213,6 +215,7 @@
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
     <Content Include="packages.config" />
+    <Content Include="Scripts\jquery.Jcrop.js" />
     <Content Include="Scripts\jquery.mousewheel.js" />
     <Content Include="Scripts\jquery.panzoom.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />

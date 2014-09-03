@@ -16,6 +16,7 @@
     <title>@title</title>
     @Styles.Render("~/Content/bootstrap")
     @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/jquery")
 
     @Scripts.Render("~/bundles/modernizr")
 </head>

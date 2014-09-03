@@ -62,7 +62,7 @@ End Code
         <div class="pull-right">
             <div class="panzoom-parent">
                 <div class="panzoom relative">
-                    <img src="@Model.FilePath" alt="" />
+                    <img id="map" src="@Model.FilePath" alt="" />
                     @For Each switchModel In Model.SwitchModels
                         @<a class="map-anchor ajax-open-modal" href="@Url.Action("_SwitchClicked", New With {.id = switchModel.Id})" style="left: @(switchModel.CoordX)px; top: @(switchModel.CoordY)px" title="@switchModel.Name" data-title="@switchModel.Name"><span class="glyphicon glyphicon-asterisk text-super-danger text-lg"></span></a>
                     Next
@@ -77,60 +77,89 @@ End Code
     @Scripts.Render("~/bundles/jqueryPanzoom")
     <script>
         $(function () {
-            var $viewer = $("#viewer");
-            var $panzoomParent = $viewer.find(".panzoom-parent");
+            var jcropApi;
 
-            var imageWidth = parseInt("@Model.Width");
-            var imageHeight = parseInt("@Model.Height");
-            var panzoomParentWidth = global.findContainer($viewer, ".container").width() - 34 - 72;
+            function initPanzoom() {
+                var $viewer = $("#viewer");
+                var $panzoomParent = $viewer.find(".panzoom-parent");
 
-            $panzoomParent.width(panzoomParentWidth);
-            $panzoomParent.height($viewer.height() - 20);
+                var imageWidth = parseInt("@Model.Width");
+                var imageHeight = parseInt("@Model.Height");
+                var panzoomParentWidth = global.findContainer($viewer, ".container").width() - 34 - 72;
 
-            var $panzoom = $panzoomParent.find(".panzoom");
-            $panzoom.width(imageWidth);
-            $panzoom.panzoom({
-                $zoomIn: $viewer.find(".zoom-in"),
-                $zoomOut: $viewer.find(".zoom-out"),
-                $reset: $viewer.find(".zoom-reset"),
-                disablePan: true,
-                //contain: true,
-                startTransform: "scale(1.0)",
-                increment: 0.1,
-                minScale: 1,
-                startTransform: "matrix(1, 0, 0, 1, " + (($panzoomParent.width() - imageWidth) / 2).toString() + ", " + (($panzoomParent.height() - imageHeight) / 2).toString() + ")"
-            });
+                $panzoomParent.width(panzoomParentWidth);
+                $panzoomParent.height($viewer.height() - 20);
 
-            $panzoom.find("img").on("click", function (e) {
-                var offset = $(this).offset();
-                var scale = $("#viewer .panzoom").panzoom("getMatrix")[0];
-                var coordX = parseInt((e.clientX - offset.left) / scale);
-                var coordY = parseInt((e.clientY - offset.top) / scale);
-                var $addSwitchBtn = $("#addSwitchBtn");
-                $addSwitchBtn.attr("href", $addSwitchBtn.data("href") + "&coordX=" + coordX + "&coordY=" + coordY);
-                $addSwitchBtn.trigger("click");
-            });
+                var $panzoom = $panzoomParent.find(".panzoom");
+                $panzoom.width(imageWidth);
+                $panzoom.panzoom({
+                    $zoomIn: $viewer.find(".zoom-in"),
+                    $zoomOut: $viewer.find(".zoom-out"),
+                    $reset: $viewer.find(".zoom-reset"),
+                    disablePan: true,
+                    //contain: true,
+                    startTransform: "scale(1.0)",
+                    increment: 0.1,
+                    minScale: 1,
+                    startTransform: "matrix(1, 0, 0, 1, " + (($panzoomParent.width() - imageWidth) / 2).toString() + ", " + (($panzoomParent.height() - imageHeight) / 2).toString() + ")"
+                });
 
-            $("#upBtn").on("click", function () {
-                var matrix = $panzoom.panzoom("getMatrix");
-                $panzoom.panzoom("setMatrix", [matrix[0], matrix[1], matrix[2], matrix[3], matrix[4], matrix[5] - imageHeight / 10]);
-            });
+                $panzoom.find("img").on("click", function (e) {
+                    var offset = $(this).offset();
+                    var scale = $("#viewer .panzoom").panzoom("getMatrix")[0];
+                    var coordX = parseInt((e.clientX - offset.left) / scale);
+                    var coordY = parseInt((e.clientY - offset.top) / scale);
+                    var $addSwitchBtn = $("#addSwitchBtn");
+                    $addSwitchBtn.attr("href", $addSwitchBtn.data("href") + "&coordX=" + coordX + "&coordY=" + coordY);
+                    $addSwitchBtn.trigger("click");
+                });
 
-            $("#leftBtn").on("click", function () {
-                var matrix = $panzoom.panzoom("getMatrix");
-                $panzoom.panzoom("setMatrix", [matrix[0], matrix[1], matrix[2], matrix[3], matrix[4] - imageWidth / 10, matrix[5]]);
-            });
+                $("#upBtn").on("click", function () {
+                    var matrix = $panzoom.panzoom("getMatrix");
+                    $panzoom.panzoom("setMatrix", [matrix[0], matrix[1], matrix[2], matrix[3], matrix[4], matrix[5] - imageHeight / 10]);
+                });
 
-            $("#rightBtn").on("click", function () {
-                var matrix = $panzoom.panzoom("getMatrix");
-                $panzoom.panzoom("setMatrix", [matrix[0], matrix[1], matrix[2], matrix[3], parseInt(matrix[4]) + imageWidth / 10, matrix[5]]);
-            });
+                $("#leftBtn").on("click", function () {
+                    var matrix = $panzoom.panzoom("getMatrix");
+                    $panzoom.panzoom("setMatrix", [matrix[0], matrix[1], matrix[2], matrix[3], matrix[4] - imageWidth / 10, matrix[5]]);
+                });
 
-            $("#downBtn").on("click", function () {
-                var matrix = $panzoom.panzoom("getMatrix");
-                $panzoom.panzoom("setMatrix", [matrix[0], matrix[1], matrix[2], matrix[3], matrix[4], parseInt(matrix[5]) + imageHeight / 10]);
-            });
+                $("#rightBtn").on("click", function () {
+                    var matrix = $panzoom.panzoom("getMatrix");
+                    $panzoom.panzoom("setMatrix", [matrix[0], matrix[1], matrix[2], matrix[3], parseInt(matrix[4]) + imageWidth / 10, matrix[5]]);
+                });
 
+                $("#downBtn").on("click", function () {
+                    var matrix = $panzoom.panzoom("getMatrix");
+                    $panzoom.panzoom("setMatrix", [matrix[0], matrix[1], matrix[2], matrix[3], matrix[4], parseInt(matrix[5]) + imageHeight / 10]);
+                });
+            };
+
+            function initJcrop() {
+                $('#map').Jcrop({
+                    onChange: showCoords,
+                    onSelect: showCoords,
+                    onRelease: clearCoords
+                }, function () {
+                    jcropApi = this;
+                });
+            };
+
+            function showCoords(c) {
+                //$('#x1').val(c.x);
+                //$('#y1').val(c.y);
+                //$('#x2').val(c.x2);
+                //$('#y2').val(c.y2);
+                //$('#w').val(c.w);
+                //$('#h').val(c.h);
+            };
+
+            function clearCoords() {
+                //$('#coords input').val('');
+            };
+
+            initPanzoom();
+            initJcrop();
         });
     </script>
 End Section

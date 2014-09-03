@@ -12,7 +12,8 @@ Public Class BundleConfig
 
         bundles.Add(New ScriptBundle("~/bundles/jqueryPanzoom").Include(
                     "~/Scripts/jquery.panzoom.js",
-                    "~/Scripts/jquery.mousewheel.js"))
+                    "~/Scripts/jquery.mousewheel.js",
+                    "~/Scripts/jquery.Jcrop.js"))
 
         ' Use the development version of Modernizr to develop with and learn from. Then, when you're
         ' ready for production, use the build tool at http://modernizr.com to pick only the tests you need.
@@ -31,6 +32,8 @@ Public Class BundleConfig
         bundles.Add(New StyleBundle("~/Content/bootstrap").Include(
                     "~/Content/bootstrap.css",
                     "~/Content/bootstrap-theme.css"))
+
+        bundles.Add(New StyleBundle("~/Content/jquery").Include("~/Content/jquery.Jcrop.css"))
 
     End Sub
 End Class
