@@ -236,6 +236,7 @@
     <Content Include="Views\List\Index.vbhtml" />
     <Content Include="Views\Map\Upload.vbhtml" />
     <Content Include="Views\Shared\_FileInput.vbhtml" />
+    <Content Include="Views\Map\_AddNewSwitch.vbhtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />

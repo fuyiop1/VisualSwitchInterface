@@ -67,6 +67,20 @@ Namespace Controllers
             Return PartialView(model)
         End Function
 
+        Function _AddNewSwitch(model As SwitchModel, tmp As String) As ActionResult
+            ModelState.Clear()
+            Return PartialView(model)
+        End Function
+
+        <HttpPost()>
+        Function _AddNewSwitch(model As SwitchModel) As ActionResult
+            If Validate(model) Then
+                SaveSwitch(model)
+                EncapulateSuccess()
+            End If
+            Return PartialView(model)
+        End Function
+
         Private Sub EncapulateSuccess()
             ViewBag.IsSuccess = True
         End Sub

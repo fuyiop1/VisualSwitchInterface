@@ -32,5 +32,7 @@ Namespace Models
         Property Name() As String
         Property CoordX() As Integer
         Property CoordY() As Integer
+        Property Width() As Integer
+        Property Height() As Integer
     End Class
 End Namespace

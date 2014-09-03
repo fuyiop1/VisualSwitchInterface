@@ -44,18 +44,49 @@ End Code
     </div>
     <div class="clearfix">
         <div class="pull-left">
-            <div class="btn-group-vertical">
+            <div class="btn-group-vertical bottom-buffer">
                 <button type="button" class="btn btn-sm btn-default zoom-in" title="Zoom in"><span class="glyphicon glyphicon-plus"></span></button>
                 <button type="button" class="btn btn-sm btn-default zoom-out" title="Zoom out"><span class="glyphicon glyphicon-minus"></span></button>
                 <button type="button" class="btn btn-sm btn-default zoom-reset" title="Reset"><span class="glyphicon glyphicon-repeat"></span></button>
             </div>
+
+            <div>
+                <button id="rehook" type="button" class="btn btn-sm btn-default" title="Draw polygon"><span class="glyphicon glyphicon-pencil"></span></button>
+            </div>
+
+            <div class="bottom-buffer">
+                <button id="unhook" type="button" class="btn btn-sm btn-default hide" title="Cancel"><span class="glyphicon glyphicon-off"></span></button>
+            </div>
+
+            <div class="bottom-buffer">
+                <button id="apply" type="button" class="btn btn-sm btn-default hide" title="Apply"><span class="glyphicon glyphicon-ok-sign"></span></button>
+            </div>
+
         </div>
         <div class="pull-right">
-            <div class="relative" style="width: 72px;height:100%;">
+            <div class="relative" style="width: 72px">
                 <button id="upBtn" type="button" class="btn btn-xs btn-default absolute" style="right: 24px; top: 0;" title="Up"><span class="glyphicon glyphicon-circle-arrow-up"></span></button>
                 <button id="leftBtn" type="button" class="btn btn-xs btn-default absolute" style="right:  48px; top: 22px;" title="Left"><span class="glyphicon glyphicon-circle-arrow-left"></span></button>
                 <button id="rightBtn" type="button" class="btn btn-xs btn-default absolute" style="right: 0; top: 22px;" title="Right"><span class="glyphicon glyphicon-circle-arrow-right"></span></button>
                 <button id="downBtn" type="button" class="btn btn-xs btn-default absolute" style="right: 24px; top: 44px;" title="Down"><span class="glyphicon glyphicon-circle-arrow-down"></span></button>
+                <div style="padding-top: 100px;">
+                    <div class="form-group">
+                        <label>X:</label>
+                        <input id="x" type="text" class="form-control" autocomplete="off" />
+                    </div>
+                    <div class="form-group">
+                        <label>Y:</label>
+                        <input id="y" type="text" class="form-control" autocomplete="off" />
+                    </div>
+                    <div class="form-group">
+                        <label>Width:</label>
+                        <input id="w" type="text" class="form-control" autocomplete="off" />
+                    </div>
+                    <div class="form-group">
+                        <label>Height:</label>
+                        <input id="h" type="text" class="form-control" autocomplete="off" />
+                    </div>
+                </div>
             </div>
             <span>&nbsp;</span>
         </div>
@@ -64,12 +95,14 @@ End Code
                 <div class="panzoom relative">
                     <img id="map" src="@Model.FilePath" alt="" />
                     @For Each switchModel In Model.SwitchModels
-                        @<a class="map-anchor ajax-open-modal" href="@Url.Action("_SwitchClicked", New With {.id = switchModel.Id})" style="left: @(switchModel.CoordX)px; top: @(switchModel.CoordY)px" title="@switchModel.Name" data-title="@switchModel.Name"><span class="glyphicon glyphicon-asterisk text-super-danger text-lg"></span></a>
+                        @*@<a class="map-anchor ajax-open-modal" href="@Url.Action("_SwitchClicked", New With {.id = switchModel.Id})" style="left: @(switchModel.CoordX)px; top: @(switchModel.CoordY)px" title="@switchModel.Name" data-title="@switchModel.Name"><span class="glyphicon glyphicon-asterisk text-super-danger text-lg"></span></a>*@
+                        @<a class="map-anchor ajax-open-modal" href="@Url.Action("_SwitchClicked", New With {.id = switchModel.Id})" style="left: @(switchModel.CoordX)px; top: @(switchModel.CoordY)px; width: @(switchModel.Width)px; height: @(switchModel.Height)px" title="@switchModel.Name" data-title="@switchModel.Name">@switchModel.Name</a>
                     Next
                 </div>
             </div>
         </div>
-        <a id="addSwitchBtn" href="#" data-href="@Url.Action("_AddSwitch", New With {.mapId = Model.Id})" class="hide ajax-open-modal" data-title="Add Switch"></a>
+        @*<a id="addSwitchBtn" href="#" data-href="@Url.Action("_AddSwitch", New With {.mapId = Model.Id})" class="hide ajax-open-modal" data-title="Add Switch"></a>*@
+        <a id="addSwitchBtn" href="#" data-href="@Url.Action("_AddNewSwitch", New With {.mapId = Model.Id})" class="hide ajax-open-modal" data-title="Add Switch"></a>
     </div>
 </div>
 
@@ -77,8 +110,6 @@ End Code
     @Scripts.Render("~/bundles/jqueryPanzoom")
     <script>
         $(function () {
-            var jcropApi;
-
             function initPanzoom() {
                 var $viewer = $("#viewer");
                 var $panzoomParent = $viewer.find(".panzoom-parent");
@@ -104,15 +135,15 @@ End Code
                     startTransform: "matrix(1, 0, 0, 1, " + (($panzoomParent.width() - imageWidth) / 2).toString() + ", " + (($panzoomParent.height() - imageHeight) / 2).toString() + ")"
                 });
 
-                $panzoom.find("img").on("click", function (e) {
-                    var offset = $(this).offset();
-                    var scale = $("#viewer .panzoom").panzoom("getMatrix")[0];
-                    var coordX = parseInt((e.clientX - offset.left) / scale);
-                    var coordY = parseInt((e.clientY - offset.top) / scale);
-                    var $addSwitchBtn = $("#addSwitchBtn");
-                    $addSwitchBtn.attr("href", $addSwitchBtn.data("href") + "&coordX=" + coordX + "&coordY=" + coordY);
-                    $addSwitchBtn.trigger("click");
-                });
+                //$panzoom.find("img").on("click", function (e) {
+                //    var offset = $(this).offset();
+                //    var scale = $("#viewer .panzoom").panzoom("getMatrix")[0];
+                //    var coordX = parseInt((e.clientX - offset.left) / scale);
+                //    var coordY = parseInt((e.clientY - offset.top) / scale);
+                //    var $addSwitchBtn = $("#addSwitchBtn");
+                //    $addSwitchBtn.attr("href", $addSwitchBtn.data("href") + "&coordX=" + coordX + "&coordY=" + coordY);
+                //    $addSwitchBtn.trigger("click");
+                //});
 
                 $("#upBtn").on("click", function () {
                     var matrix = $panzoom.panzoom("getMatrix");
@@ -135,28 +166,60 @@ End Code
                 });
             };
 
+            var jcropApi;
+
             function initJcrop() {
-                $('#map').Jcrop({
-                    onChange: showCoords,
-                    onSelect: showCoords,
-                    onRelease: clearCoords
-                }, function () {
-                    jcropApi = this;
+                $("#rehook").on("click", function () {
+                    $('#map').Jcrop({
+                        onChange: processCoords,
+                        onSelect: jcropSelected,
+                        onRelease: clearCoords
+                    }, function () {
+                        jcropApi = this;
+                    });
+
+                    $(this).addClass("hide");
+                    $("#unhook").removeClass("hide");
+                });
+
+                $("#unhook").on("click", function () {
+                    jcropApi.release();
+                    jcropApi.destroy();
+
+                    $(this).addClass("hide");
+                    $("#apply").addClass("hide");
+                    $("#rehook").removeClass("hide");
+                });
+
+                $("#apply").on("click", function () {
+                    var x = $('#x').val();
+                    var y = $('#y').val();
+                    var w = $('#w').val();
+                    var h = $('#h').val();
+
+                    var $addSwitchBtn = $("#addSwitchBtn");
+                    $addSwitchBtn.attr("href", $addSwitchBtn.data("href") + "&coordX=" + x + "&coordY=" + y + "&width=" + w + "&height=" + h);
+                    $addSwitchBtn.trigger("click");
                 });
             };
 
-            function showCoords(c) {
-                //$('#x1').val(c.x);
-                //$('#y1').val(c.y);
+            function processCoords(c) {
+                $('#x').val(parseInt(c.x));
+                $('#y').val(parseInt(c.y));
                 //$('#x2').val(c.x2);
                 //$('#y2').val(c.y2);
-                //$('#w').val(c.w);
-                //$('#h').val(c.h);
+                $('#w').val(parseInt(c.w));
+                $('#h').val(parseInt(c.h));
             };
 
             function clearCoords() {
-                //$('#coords input').val('');
+                $('#x, #y, #w, #h').val('');
             };
+
+            function jcropSelected(e) {
+                processCoords(e);
+                $("#apply").removeClass("hide");
+            }
 
             initPanzoom();
             initJcrop();

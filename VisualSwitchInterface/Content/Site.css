@@ -149,9 +149,10 @@ footer {
 }
 
 .map-anchor {
+    display: block;
     position: absolute;
-    margin-left: -8px;
-    margin-top: -8px;
+    background-color: orangered;
+    text-align: center;
 }
 
 .text-super-danger {
