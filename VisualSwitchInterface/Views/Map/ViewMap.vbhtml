@@ -39,9 +39,9 @@ End Code
 </div>
 
 <div id="viewer">
-    <div class="text-center">
+    @*<div class="text-center">
         <span class="text-danger">Click the empty area of the map to add a new switch or click the polygon to control the switch.</span>
-    </div>
+    </div>*@
     <div class="clearfix">
         <div class="pull-left">
             <div class="btn-group-vertical bottom-buffer">
@@ -69,26 +69,25 @@ End Code
                 <button id="leftBtn" type="button" class="btn btn-xs btn-default absolute" style="right:  48px; top: 22px;" title="Left"><span class="glyphicon glyphicon-circle-arrow-left"></span></button>
                 <button id="rightBtn" type="button" class="btn btn-xs btn-default absolute" style="right: 0; top: 22px;" title="Right"><span class="glyphicon glyphicon-circle-arrow-right"></span></button>
                 <button id="downBtn" type="button" class="btn btn-xs btn-default absolute" style="right: 24px; top: 44px;" title="Down"><span class="glyphicon glyphicon-circle-arrow-down"></span></button>
-                <div style="padding-top: 100px;">
+                <div style="padding: 80px 5px 0;">
                     <div class="form-group">
                         <label>X:</label>
-                        <input id="x" type="text" class="form-control" autocomplete="off" />
+                        <input id="x" type="text" class="form-control" autocomplete="off" readonly />
                     </div>
                     <div class="form-group">
                         <label>Y:</label>
-                        <input id="y" type="text" class="form-control" autocomplete="off" />
+                        <input id="y" type="text" class="form-control" autocomplete="off" readonly />
                     </div>
                     <div class="form-group">
                         <label>Width:</label>
-                        <input id="w" type="text" class="form-control" autocomplete="off" />
+                        <input id="w" type="text" class="form-control" autocomplete="off" readonly />
                     </div>
                     <div class="form-group">
                         <label>Height:</label>
-                        <input id="h" type="text" class="form-control" autocomplete="off" />
+                        <input id="h" type="text" class="form-control" autocomplete="off" readonly />
                     </div>
                 </div>
             </div>
-            <span>&nbsp;</span>
         </div>
         <div class="pull-right">
             <div class="panzoom-parent">
@@ -119,7 +118,8 @@ End Code
                 var panzoomParentWidth = global.findContainer($viewer, ".container").width() - 34 - 72;
 
                 $panzoomParent.width(panzoomParentWidth);
-                $panzoomParent.height($viewer.height() - 20);
+                //$panzoomParent.height($viewer.height() - 20);
+                $panzoomParent.height($viewer.height());
 
                 var $panzoom = $panzoomParent.find(".panzoom");
                 $panzoom.width(imageWidth);
@@ -171,6 +171,7 @@ End Code
             function initJcrop() {
                 $("#rehook").on("click", function () {
                     $('#map').Jcrop({
+                        touchSupport: true,
                         onChange: processCoords,
                         onSelect: jcropSelected,
                         onRelease: clearCoords
