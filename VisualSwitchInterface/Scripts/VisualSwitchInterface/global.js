@@ -301,8 +301,9 @@
         var spaceHeight = $(window).innerHeight() - $(document.body).outerHeight();
         var expectedHeight = parseInt($viewer.css("height"));
         expectedHeight += spaceHeight;
-
-        $viewer.css("height", expectedHeight + "px");
+        if (expectedHeight > 0) {
+            $viewer.css("height", expectedHeight + "px");
+        }
 
         $(window).off("resize").resize(function () {
             clearTimeout(global.timerId);
@@ -310,6 +311,14 @@
                 global.resizeViewer();
             }, 200);
         });
+    };
+
+    global.alignVertical = function($this) {
+        var $span = $this.find("span");
+        var spaceHeight = $this.innerHeight() - $span.outerHeight();
+        if (spaceHeight > 0) {
+            $span.css("margin-top", (spaceHeight / 2) + "px");
+        }
     };
 
     global.init();

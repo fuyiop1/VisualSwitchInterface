@@ -99,7 +99,7 @@ End Code
                     <img id="map" src="@Model.FilePath" alt="" />
                     @For Each switchModel In Model.SwitchModels
                         @*@<a class="map-anchor ajax-open-modal" href="@Url.Action("_SwitchClicked", New With {.id = switchModel.Id})" style="left: @(switchModel.CoordX)px; top: @(switchModel.CoordY)px" title="@switchModel.Name" data-title="@switchModel.Name"><span class="glyphicon glyphicon-asterisk text-super-danger text-lg"></span></a>*@
-                        @<a class="map-anchor ajax-open-modal" href="@Url.Action("_SwitchClicked", New With {.id = switchModel.Id})" style="left: @(switchModel.CoordX)px; top: @(switchModel.CoordY)px; width: @(switchModel.Width)px; height: @(switchModel.Height)px" title="@switchModel.Name" data-title="@switchModel.Name">@switchModel.Name</a>
+                        @<a class="map-anchor ajax-open-modal" href="@Url.Action("_SwitchClicked", New With {.id = switchModel.Id})" style="left: @(switchModel.CoordX)px; top: @(switchModel.CoordY)px; width: @(switchModel.Width)px; height: @(switchModel.Height)px" title="@switchModel.Name" data-title="@switchModel.Name"><span>@switchModel.Name</span></a>
                         @<script>
                             mapSwitches.push({
                                 x: @switchModel.CoordX,
@@ -283,6 +283,10 @@ End Code
 
             initPanzoom();
             initJcrop();
+
+            $(".map-anchor").each(function(){
+                global.alignVertical($(this));
+            });
         });
     </script>
 End Section

@@ -157,6 +157,15 @@ footer {
     overflow: hidden;
 }
 
+.map-anchor > span {
+    display: inline-block;
+    font-weight: bold;
+}
+
+.map-anchor:hover > span {
+    text-decoration: underline;
+}
+
 .map-anchor, .map-anchor:hover, .map-anchor:visited, .map-anchor:active {
     color: #fff;
 }
