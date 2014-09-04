@@ -14,6 +14,13 @@
                 .css("height", "@Model.Height" + "px")
                 .text("@Model.Name")
                 .appendTo($("#viewer .panzoom"));
+
+            mapSwitches.push({
+                x: @Model.CoordX,
+                y: @Model.CoordY,
+                w: @Model.Width,
+                h: @Model.Height,
+            });
         });
     </script>
 Else

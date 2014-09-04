@@ -153,6 +153,12 @@ footer {
     position: absolute;
     background-color: orangered;
     text-align: center;
+    opacity: 0.75;
+    overflow: hidden;
+}
+
+.map-anchor, .map-anchor:hover, .map-anchor:visited, .map-anchor:active {
+    color: #fff;
 }
 
 .text-super-danger {

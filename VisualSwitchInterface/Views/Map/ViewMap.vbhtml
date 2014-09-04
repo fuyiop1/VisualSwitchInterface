@@ -4,6 +4,10 @@
     Dim otherMaps As IList(Of VisualSwitchInterface.Models.MapModel) = ViewBag.otherMaps
 End Code
 
+<script>
+    var mapSwitches = [];
+</script>
+
 <ol class="breadcrumb row bottom-buffer-sm">
     <li><a href="@Url.Action("Index", "Home")">Home</a></li>
     <li><a href="@Url.Action("Index")">Map View</a></li>
@@ -40,8 +44,8 @@ End Code
 
 <div id="viewer">
     @*<div class="text-center">
-        <span class="text-danger">Click the empty area of the map to add a new switch or click the polygon to control the switch.</span>
-    </div>*@
+            <span class="text-danger">Click the empty area of the map to add a new switch or click the polygon to control the switch.</span>
+        </div>*@
     <div class="clearfix">
         <div class="pull-left">
             <div class="btn-group-vertical bottom-buffer">
@@ -51,15 +55,15 @@ End Code
             </div>
 
             <div>
-                <button id="rehook" type="button" class="btn btn-sm btn-default" title="Draw polygon"><span class="glyphicon glyphicon-pencil"></span></button>
+                <button id="rehook" type="button" class="btn btn-sm btn-primary" title="Draw polygon"><span class="glyphicon glyphicon-pencil"></span></button>
             </div>
 
             <div class="bottom-buffer">
-                <button id="unhook" type="button" class="btn btn-sm btn-default hide" title="Cancel"><span class="glyphicon glyphicon-off"></span></button>
+                <button id="unhook" type="button" class="btn btn-sm btn-danger hide" title="Cancel"><span class="glyphicon glyphicon-off"></span></button>
             </div>
 
             <div class="bottom-buffer">
-                <button id="apply" type="button" class="btn btn-sm btn-default hide" title="Apply"><span class="glyphicon glyphicon-ok-sign"></span></button>
+                <button id="apply" type="button" class="btn btn-sm btn-success hide" title="Apply"><span class="glyphicon glyphicon-ok"></span></button>
             </div>
 
         </div>
@@ -96,6 +100,14 @@ End Code
                     @For Each switchModel In Model.SwitchModels
                         @*@<a class="map-anchor ajax-open-modal" href="@Url.Action("_SwitchClicked", New With {.id = switchModel.Id})" style="left: @(switchModel.CoordX)px; top: @(switchModel.CoordY)px" title="@switchModel.Name" data-title="@switchModel.Name"><span class="glyphicon glyphicon-asterisk text-super-danger text-lg"></span></a>*@
                         @<a class="map-anchor ajax-open-modal" href="@Url.Action("_SwitchClicked", New With {.id = switchModel.Id})" style="left: @(switchModel.CoordX)px; top: @(switchModel.CoordY)px; width: @(switchModel.Width)px; height: @(switchModel.Height)px" title="@switchModel.Name" data-title="@switchModel.Name">@switchModel.Name</a>
+                        @<script>
+                            mapSwitches.push({
+                                x: @switchModel.CoordX,
+                                y: @switchModel.CoordY,
+                                w: @switchModel.Width,
+                                h: @switchModel.Height,
+                            });
+                        </script>
                     Next
                 </div>
             </div>
@@ -215,11 +227,58 @@ End Code
 
             function clearCoords() {
                 $('#x, #y, #w, #h').val('');
+                $("#apply").addClass("hide");
             };
 
             function jcropSelected(e) {
-                processCoords(e);
-                $("#apply").removeClass("hide");
+                var coords = processOverlap(e, mapSwitches);
+                if (coords) {
+                    //coords.w = coords.x2 - coords.x;
+                    //coords.h = coords.y2 - coords.y;
+                    //processCoords(coords);
+                    jcropApi.animateTo([coords.x, coords.y, coords.x2, coords.y2]);
+                    $("#apply").removeClass("hide");
+                }else {
+                    jcropApi.release();
+                }
+            }
+
+            function processOverlap(coords, others){
+                var result = {
+                    x: parseInt(coords.x),
+                    y: parseInt(coords.y),
+                    x2: parseInt(coords.x2),
+                    y2: parseInt(coords.y2),
+                };
+
+                var item = {};
+                for (var i = 0; i < others.length; i++) {
+                    item = others[i];
+                    item.x2 = item.x + item.w;
+                    item.y2 = item.y + item.h;
+
+                    if (Math.abs(result.x2 + result.x - item.x2 - item.x) < result.x2 - result.x + item.x2 - item.x
+                        && Math.abs(result.y2 + result.y - item.y2 - item.y) < result.y2 - result.y + item.y2 - item.y) {
+                        if (result.x >= item.x && result.x <= item.x2 && result.y >= item.y && result.y <= item.y2
+                            && result.x2 >= item.x && result.x2 <= item.x2 && result.y2 >= item.y && result.y2 <= item.y2) {
+                            return null;
+                        }else if (result.x >= item.x && result.x <= item.x2 && result.x2 >= item.x && result.x2 <= item.x2) {
+                            if (result.y > item.y) {
+                                result.y = item.y2;
+                            }else {
+                                result.y2 = item.y;
+                            }
+                        }else{
+                            if (result.x < item.x) {
+                                result.x2 = item.x;
+                            }else {
+                                result.x = item.x2;
+                            }
+                        }
+                    }
+                }
+
+                return result;
             }
 
             initPanzoom();
